@@ -1,0 +1,18 @@
+english = int(input())
+english_stud = sorted(list(map(int,input().split())))
+french = int(input())
+french_stud = sorted(list(map(int,input().split())))
+
+ans = len(english_stud)
+i = j = 0
+while i < len(english_stud) and j < len(french_stud):
+    if english_stud[i] == french_stud[j]:
+        ans -= 1
+        i += 1
+        j += 1
+    elif english_stud[i] < french_stud[j]:
+        i += 1
+    else:
+        j += 1
+        
+print(ans)
