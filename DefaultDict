@@ -1,0 +1,15 @@
+from collections import defaultdict
+
+n, m = map(int,input().split())
+d = defaultdict(list)
+for index in range(n):
+    words = input()
+    d[words].append(index + 1)
+
+for i in range(m):
+    words = input()
+    if words in d:
+        ans = " ".join(map(str,d[words]))
+        print(ans)
+    else:
+        print(-1)
