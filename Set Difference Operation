@@ -1,4 +1,16 @@
 english = int(input())
+english_stud = set(map(int,input().split()))
+french = int(input())
+french_stud = set(map(int,input().split()))
+
+ans = english_stud.difference(french_stud)
+print(len(ans))
+
+
+
+# another approach using two pointers
+
+english = int(input())
 english_stud = sorted(list(map(int,input().split())))
 french = int(input())
 french_stud = sorted(list(map(int,input().split())))
