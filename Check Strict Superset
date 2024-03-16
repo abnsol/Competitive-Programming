@@ -1,0 +1,10 @@
+A = set(map(int,input().split()))
+N = int(input())
+ans = True
+for i in range(N):
+    B = set(map(int,input().split()))
+    ans = ans and A.issuperset(B)
+    
+print(ans)
+        
+    
