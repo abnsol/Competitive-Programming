@@ -5,13 +5,10 @@ class Solution:
 
         while start <= end:
             mid = start + (end - start)//2
-            curr_row = mid // col
-            curr_col = mid % col
-            mid_val = matrix[curr_row][curr_col]
 
-            if mid_val == target:
+            if matrix[mid // col][mid % col] == target:
                 return True
-            elif mid_val > target:
+            elif matrix[mid // col][mid % col] > target:
                 end = mid - 1
             else:
                 start = mid + 1
