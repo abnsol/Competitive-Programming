@@ -1,15 +1,14 @@
 class Solution:
     def wateringPlants(self, plants: List[int], capacity: int) -> int:
-        left = steps = 0
+        steps = 0
         currCapacity = capacity
-        while left < len(plants):
-            if currCapacity >= plants[left]:
-                currCapacity -= plants[left]
-                steps += 1
-                left += 1
-            else:
+        for i in range(len(plants)):
+            while currCapacity < plants[i]:
                 currCapacity = capacity
-                steps += 2 * (left)
+                steps += 2 * (i)
+            
+            currCapacity -= plants[i]
+            steps += 1             
         
         return steps
 
