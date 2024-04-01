@@ -1,0 +1,19 @@
+m , n = map(int, input().split())
+a = list(map(int,input().split()))
+b = list(map(int,input().split()))
+
+i = j = 0
+merged = []
+while i < m and j < n:
+    if a[i] > b[j]:
+        merged.append(b[j])
+        j += 1
+    else:
+        merged.append(a[i])
+        i += 1
+
+merged += a[i:]
+merged += b[j:]
+
+print(" ".join(map(str,merged)))
+
