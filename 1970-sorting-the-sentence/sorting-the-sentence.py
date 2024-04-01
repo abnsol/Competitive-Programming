@@ -4,7 +4,6 @@ class Solution:
         count = [0] * len(words)
 
         for word in words:
-            idx = int(word[-1])
-            count[idx - 1] = word[:len(word) - 1]
+            count[int(word[-1]) - 1] = word[:len(word) - 1]
         
         return " ".join(count)
