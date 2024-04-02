@@ -1,20 +1,9 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        maps = {}
-        for i in range(len(s)):
-            if s[i] not in maps:
-                maps[s[i]] = t[i]
-                continue
-            if maps[s[i]] != t[i]:
+        mapST ,mapTS = {} , {}
+        for c, d  in zip(s,t):
+            if ((c in mapST and  mapST[c] != d) or (d in mapTS and mapTS[d] != c)):
                 return False
-        
-        maps1 = {}
-        for i in range(len(s)):
-            if t[i] not in maps1:
-                maps1[t[i]] = s[i]
-                continue
-            if maps1[t[i]] != s[i]:
-                return False
+            mapST[c] = d
+            mapTS[d] = c
         return True
-        
-
