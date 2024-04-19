@@ -1,16 +1,20 @@
 class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
-        # lets now do 2D prefix sum
         rows , cols = len(matrix), len(matrix[0])
-        self.ps = [[0]* (cols + 1) for _ in range(rows + 1)] # first intialize all as zero
-
+        self.ps = []
+        for i in range(rows + 1):
+            temp = []
+            for j in range(cols + 1):
+                temp.append(0)
+            self.ps.append(temp)
         
-        # we add previous row[r][c + 1] then column[r + 1][c] then subtract [r][c] duplicate
         for r in range(rows):
             for c in range(cols):
-                self.ps[r + 1][c + 1] = self.ps[r + 1][c] + self.ps[r][c + 1] - self.ps[r][c] + matrix[r][c]
-                        
+                self.ps[r + 1][c + 1] = self.ps[r][c + 1] + self.ps[r + 1][c] - self.ps[r][c] + matrix[r][c]
+                
+
+
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         return self.ps[row2 + 1][col2 + 1] - self.ps[row2 + 1][col1] - self.ps[row1][col2 + 1] + self.ps[row1][col1]
