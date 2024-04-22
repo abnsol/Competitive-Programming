@@ -4,8 +4,10 @@ class Solution {
         int[] ans = new int[len];
         Arrays.fill(ans,1);
 
-        for (int i = 1; i < len; i++){
-            ans[i] = ans[i - 1] * nums[i - 1];
+        int left = 1;
+        for (int i = 0; i < len; i++){
+            ans[i] = left;
+            left *= nums[i];
         }
 
         int right = 1;
