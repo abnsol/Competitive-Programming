@@ -8,4 +8,4 @@ class Solution:
             elif ans:   # if ans is zero there are no opened bracket that arent closed
                 ans -= 1
         
-        return (ans + 1) // 2 # remember 1 swap closes(validates) 2 open brackets
+        return (ans + 1) >> 1 # remember 1 swap closes(validates) 2 open brackets
