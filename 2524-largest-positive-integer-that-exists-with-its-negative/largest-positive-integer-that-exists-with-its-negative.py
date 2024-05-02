@@ -1,7 +1,6 @@
 class Solution:
     def findMaxK(self, nums: List[int]) -> int:
         nums.sort()
-        print(nums)
         left, right = 0, len(nums) - 1
 
         while left < right:
