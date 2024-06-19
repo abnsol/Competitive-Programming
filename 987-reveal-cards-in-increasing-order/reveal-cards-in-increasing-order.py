@@ -1,26 +1,16 @@
 class Solution:
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
-        N = len(deck)
-        result = [0] * N
-        skip = False
-        index_in_deck = 0
-        index_in_result = 0
+        # reverse process --> start from sorted then get the deck order
+        deck.sort() # start by sorting deck
+        n = len(deck)
+        res = [0] * n
+        q = deque(range(0,n)) # indexes
 
-        deck.sort()
+        for cards in deck:
+            i = q.popleft()   # pop index where we insert the popped card (tho not literally poping)
+            res[i] = cards
 
-        while index_in_deck < N:
-            # There is an available gap in result
-            if result[index_in_result] == 0:
-
-                # Add a card to result
-                if not skip:
-                    result[index_in_result] = deck[index_in_deck]
-                    index_in_deck += 1
-
-                # Toggle skip to alternate between adding and skipping cards
-                skip = not skip
-
-            # Progress to the next index of result array
-            index_in_result = (index_in_result + 1) % N
-
-        return result
+            if q:
+                q.append(q.popleft()) # move the next index to the last
+        
+        return res
