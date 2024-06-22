@@ -1,17 +1,16 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        ans = set()
-        def backtrack(num,arr):
-            if len(arr) >= k:
-                ans.add(tuple(arr)) 
+        def backtrack(start,combination):
+            if len(combination) == k:
+                res.append(combination[:])
                 return
             
-            if num > n:
-                return 
-            
-            backtrack(num + 1,arr)
-            backtrack(num + 1,arr + [num])
-
-            return 
+            # making decision
+            for i in range(start,n + 1):
+                combination.append(i)
+                backtrack(i + 1,combination)
+                combination.pop()
+        
+        res = []
         backtrack(1,[])
-        return ans
+        return res
