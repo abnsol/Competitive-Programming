@@ -1,7 +1,20 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        ans = [[]]
-        for num in nums:
-            ans += [curr + [num] for curr in ans]
+        res = []
+        subset = []
         
-        return ans
+        def bt(idx):
+            if idx >= len(nums):
+                res.append(subset[:])
+                return 
+            
+            # takeit 
+            subset.append(nums[idx])
+            bt(idx + 1)
+
+            # leaveit
+            subset.pop()
+            bt(idx + 1)
+
+        bt(0)
+        return res
