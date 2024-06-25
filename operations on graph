@@ -1,0 +1,20 @@
+from collections import defaultdict
+
+n = int(input())
+k = int(input())
+graph = defaultdict(list)
+
+def addEdge(u,v):
+    graph[u].append(v)
+    graph[v].append(u)
+
+def vertex(u):
+    print(' '.join(map(str,graph[u])))
+
+for i in range(k):
+    ops = list(map(int,input().split()))
+    if ops[0] == 1:
+        addEdge(ops[1],ops[2])
+    else:
+        vertex(ops[1])
+
