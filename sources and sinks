@@ -1,0 +1,25 @@
+n = int(input())
+am = []
+
+sink = [0]
+for i in range(n):
+    row = list(map(int,input().split()))
+    if row == [0] * n:
+        sink.append(i + 1)
+        sink[0] += 1
+    am.append(row)
+
+edges = [0] * n
+for j in range(n):
+    for k in range(n):
+        if am[j][k] == 1:
+            edges[k] += 1
+
+source = [0]
+for i in range(n):
+    if edges[i] == 0:
+        source.append(i + 1)
+        source[0] += 1
+
+print(' '.join(map(str,source)))
+print(' '.join(map(str,sink)))
