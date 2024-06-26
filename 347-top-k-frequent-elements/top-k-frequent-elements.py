@@ -5,7 +5,6 @@ class Solution:
 
         for num,count in counter.items():
             bucket[count] += [num] 
-        print(bucket)
 
         ans = []
         for i in range(len(nums),-1,-1):
