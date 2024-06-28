@@ -1,12 +1,12 @@
 class Solution:
     def distinctPrimeFactors(self, nums: List[int]) -> int:
-        pro = 1
-        for n in nums:
-            pro *= n
-
         def wheel_division(n):
-            d = 2
-            while d * d < n:
+            while n % 2 == 0:
+                ans.add(2)
+                n //= 2
+
+            d = 3
+            while d * d <= n:
                 while n%d == 0:
                     ans.add(d)
                     n//=d
@@ -16,6 +16,7 @@ class Solution:
                 ans.add(n)
 
         ans = set()
-        wheel_division(pro)
+        for n in nums:
+            wheel_division(n)
         return len(ans) 
         
