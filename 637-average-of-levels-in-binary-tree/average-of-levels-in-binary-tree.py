@@ -11,16 +11,19 @@ class Solution:
 
         while q:
             n = len(q)
-            lvl = []
+            ttl = 0
+            cnt = 0
             for i in range(n):
                 node = q.popleft()
                 if node:
-                    lvl.append(node.val)
+                    ttl += node.val
+                    cnt += 1
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
             
-            ans.append(sum(lvl)/len(lvl))
+            if cnt:
+                ans.append(ttl/cnt)
         
         return ans
