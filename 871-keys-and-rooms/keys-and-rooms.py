@@ -1,19 +1,18 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         visited = set()
+        q = deque([0])
 
-        def dfs(src):
-            if src in visited:
-                return 
+        while q:
+            n = len(q)
+            for i in range(n):
+                node = q.popleft()
+                if node in visited:
+                    continue
 
-            visited.add(src)            
-            if len(visited) == len(rooms):
-                return True
-
-            boolean = False
-            for i in rooms[src]:
-                boolean = boolean or dfs(i)
+                visited.add(node)
+                for nodes in rooms[node]:
+                    q.append(nodes)
             
-            return boolean
-
-        return dfs(0)
+        return len(visited) == len(rooms)
+                
