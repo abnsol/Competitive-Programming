@@ -1,17 +1,20 @@
 class Solution:
     def averageWaitingTime(self, customers: List[List[int]]) -> float:
+        n = len(customers)
         waitingtime = 0
-        delay = 0
+        ttl = 0
+        
 
         for a,t in customers:
-            if delay - a <= 0:
-                delay = a + t
-                waitingtime += delay - a
+            if ttl - a <= 0:
+                ttl = a + t
+                waitingtime += t
             else:
-                waitingtime += delay - a + t
-                delay += t
+                ttl += t
+                waitingtime += ttl - a
+                
         
-        return waitingtime/len(customers)
+        return waitingtime/n
             
             
         
