@@ -9,7 +9,6 @@ class Solution:
             x1,y1,r1 = bombs[i]
             for j in range(i + 1,len(bombs)):
                 x2,y2,r2 = bombs[j]
-                print(x2,y2,r2)
                 distance = finddistance(x1,x2,y1,y2)
                 if distance <= r1:
                     g[i].append(j)
