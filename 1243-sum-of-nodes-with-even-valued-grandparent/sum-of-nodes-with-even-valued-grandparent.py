@@ -20,7 +20,8 @@ class Solution:
             dfs(parent,parent.left)
             dfs(parent,parent.right)
         
-        
+        if not root:
+            return 0
         dfs(root,root.left)
         dfs(root,root.right)
         return self.total
