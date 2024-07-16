@@ -1,22 +1,24 @@
 class Solution:
-    def findCircleNum(self, grid: List[List[int]]) -> int:
-        visited =set()
-        cnt = 0
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        g = defaultdict(list)
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                if isConnected[i][j] == 1:
+                    g[i].append(j)
         
-        def dfs(idx):
-            if idx in visited:
-                return 
-            
-            visited.add(idx)
-            for i in range(len(grid[0])):
-                if grid[idx][i] != 0:
+        visited = set()
+        cnt = 0
+        def dfs(node):
+            for i in g[node]:
+                if i not in visited:
+                    visited.add(i)
                     dfs(i)
-
-
-        for idx in range(len(grid)):
-            if idx not in visited:
+        
+        for node in g:
+            if node not in visited:
                 cnt += 1
-                dfs(idx)
-
+                visited.add(node)
+                dfs(node)
+        
         return cnt
                 
