@@ -1,7 +1,7 @@
 class UnionFind:
     def __init__(self,size):
         self.parent = [i for i in range(size)]
-        self.rank = [1] * size
+        self.rank = [0] * size
 
     def find(self,child):
         if child == self.parent[child]:
