@@ -20,5 +20,3 @@ class Solution(object):
                 stack.pop()
             i+=1
         return result
-
-        return result
