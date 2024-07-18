@@ -3,18 +3,16 @@ class Solution:
         ans = []
         
         def bt(idx,arr):
-            if idx > len(nums):
+            if idx == len(nums):
+                ans.append(arr[:])
                 return 
             
-            if arr not in ans:
-                ans.append(arr[:])
+            ans.append(arr[:])
             
             for i in range(idx,len(nums)):
                 arr.append(nums[i])
                 bt(i + 1,arr)
                 arr.pop()
         
-        
-        for i in range(len(nums)):
-            bt(i,[])
+        bt(0,[])
         return ans
