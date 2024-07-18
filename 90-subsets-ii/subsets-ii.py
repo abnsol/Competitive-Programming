@@ -1,19 +1,22 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        nums.sort()
+        ans = []
+        n = len(nums)
 
-        def bt(idx,ans):
-            if len(nums) == idx:
-                res.append(ans[:])
-                return
-
-            ans.append(nums[idx])
-            bt(idx + 1,ans)
-            ans.pop()
-            while idx + 1 < len(nums) and nums[idx] == nums[idx + 1]:
-                idx += 1
-            bt(idx + 1,ans)
-
+        def bt(idx,arr):
+            if idx == n:
+                if sorted(arr) not in ans:
+                    ans.append(sorted(arr)[:])
+                    return
+            
+            if sorted(arr) not in ans:
+                ans.append(sorted(arr)[:])
+            
+            for i in range(idx,n):
+                arr.append(nums[i])
+                bt(i + 1,arr)
+                arr.pop()
+            
         bt(0,[])
-        return res
+        return ans
+                
