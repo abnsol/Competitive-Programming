@@ -1,41 +1,41 @@
-class UnionFind:
+class Union:
     def __init__(self,size):
-        self.parent = [i for i in range(size)]
+        self.parent = {i:i for i in range(size)}
         self.rank = [0] * size
 
-    def find(self,child):
-        if child == self.parent[child]:
-            return child
-
-        self.parent[child] = self.find(self.parent[child])
-        return self.parent[child]
+    def find(self,x):
+        if x == self.parent[x]:
+            return x
+        
+        self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
     
     def union(self,x,y):
-        parentx = self.find(x)
-        parenty = self.find(y)
-        if parentx != parenty:
-            if self.rank[parentx] > self.rank[parenty]:
-                self.parent[parenty] = parentx
-            elif self.rank[parenty] > self.rank[parentx]:
-                self.parent[parentx] = parenty
+        parentX = self.find(x)
+        parentY = self.find(y)
+
+        if parentX != parentY:
+            if self.rank[parentX] > self.rank[parentY]:
+                self.parent[parentY] = parentX
+            elif self.rank[parentX] < self.parent[parentY]:
+                self.parent[parentX] = parentY
             else:
-                self.parent[parentx] = parenty
-                self.rank[parenty] += 1
+                self.parent[parentX] = parentY
+                self.rank[parentY] += 1
     
-    def isconnected(self,x,y):
+    def connected(self,x,y):
         return self.find(x) == self.find(y)
 
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n = len(isConnected)
-        components = n
-        union = UnionFind(n)
+        size = len(isConnected)
+        union = Union(size)
+        numberOfComponents = size
 
-        for i in range(n):
-            for j in range(i + 1,n):
+        for i in range(len(isConnected)):
+            for j in range(i,size):
                 if isConnected[i][j] and union.find(i) != union.find(j):
-                    components -= 1
                     union.union(i,j)
+                    numberOfComponents -= 1
         
-        return components
-
+        return numberOfComponents
