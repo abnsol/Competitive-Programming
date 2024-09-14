@@ -1,7 +1,7 @@
 class Solution:
     def findComplement(self, num: int) -> int:
-        bit_length = num.bit_length()
+        n = int.bit_length(num)
+        for i in range(n):
+            num ^= (1 << i)
         
-        mask = (1 << bit_length) - 1
-        
-        return num ^ mask
+        return num
