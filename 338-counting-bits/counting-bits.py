@@ -1,14 +1,16 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
         ans = []
+        
+        def counter(num):
+            count = 0
+            while num:
+                num = num & (num - 1)
+                count += 1
+            
+            return count
+        
         for i in range(n + 1):
-            ones = 0
-
-            while i > 0:
-                if i & 1 == 1:
-                    ones += 1
-                i >>= 1
-            ans.append(ones)
+            ans.append(counter(i))
         
         return ans
-                
