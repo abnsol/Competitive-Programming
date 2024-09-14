@@ -3,11 +3,6 @@ class Solution:
         ans = []
         
         for num in range(n + 1):
-            count = 0
-            while num:
-                num = num & (num - 1)
-                count += 1
-            
-            ans.append(count)
+            ans.append(int.bit_count(num))
 
         return ans
