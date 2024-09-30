@@ -1,1 +1,1 @@
-<h2>how-many-numbers-are-smaller-than-the-current-number Notes</h2><hr>[ Time taken: 19 m 37 s ]
+<h2>how-many-numbers-are-smaller-than-the-current-number Notes</h2><hr>[ Time taken: 5 m 6 s ]
