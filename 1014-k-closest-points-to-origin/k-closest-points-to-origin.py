@@ -1,12 +1,9 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        closest = []  # include tuples (dis,points)
-        for x , y in points:
-            dis = x**2 + y**2
-            closest.append((dis,[x,y]))
+        newPoints = []
+        for x,y in points:
+            distance = x**2 + y**2
+            newPoints.append([[x,y],[distance]])
         
-        closest.sort()
-        ans = []
-        for i in range(k):
-            ans.append(closest[i][1])
-        return ans
+        newPoints.sort(key = lambda x : x[1])
+        return [newPoints[i][0] for i in range(k)]
