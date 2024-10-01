@@ -3,13 +3,24 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for r in range(len(nums)):
-            l = r - 1
-            key = nums[r]
-            while nums[l] == 0 and l >= 0:
-                nums[l+1] = nums[l]
-                l -= 1
-            nums[l+1] = key
+        l = r = 0
+        while l < len(nums) and nums[l] != 0:
+            l += 1
+            r += 1
 
-
+        while r < len(nums):
+            while r < len(nums) and nums[r] == 0:
+                r += 1
+            
+            if r < len(nums):
+                nums[l],nums[r] = nums[r],nums[l]
+                while l < len(nums) and nums[l] != 0:
+                    l += 1
+                r += 1
         
+        return nums
+
+'''
+    1  3  0  0  12
+          l     r 
+'''
