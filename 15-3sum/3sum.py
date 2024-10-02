@@ -1,24 +1,25 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        ans = set()
         n = len(nums)
-        l = 0 
-        while l < n:
-            r =  n - 1
-            m = l + 1
+        l, m ,r = 0, 1, n - 1
+        ans = set()
+
+        while l < r:
+            target = nums[l]
             while m < r:
-                temp = nums[l] + nums[m] + nums[r]
-                if temp > 0:
-                    r -= 1
-                elif temp < 0:
+                if target + nums[m] + nums[r] == 0:
+                    triplet = [nums[l],nums[m],nums[r]]
+                    ans.add(tuple(triplet))
                     m += 1
+                    r -= 1
+                elif target + nums[m] + nums[r] > 0:
+                    r -= 1
                 else:
-                    ans.add(tuple([nums[l],nums[m],nums[r]]))
-                    r -= 1
                     m += 1
-
+            
             l += 1
-
-        return ans
+            m = l + 1
+            r = n - 1
         
+        return ans
