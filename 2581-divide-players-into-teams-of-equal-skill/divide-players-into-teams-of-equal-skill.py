@@ -16,20 +16,3 @@ class Solution:
         return totalChemistry
 
 
-'''
-Two pointers approach
- sort
- intialize my pointers
- iterate through the array
- previous skill = 6
- totalchemistry = 0
- check if sum of skills is equal with previous skill sum
-        not : return  -1
-        is: continue
-            increment tc by product of team skill
- 
- return total chemistry here
-
-1 2 3 3 4 5 
-
-'''
