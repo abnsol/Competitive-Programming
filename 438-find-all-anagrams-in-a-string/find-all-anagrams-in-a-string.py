@@ -1,27 +1,59 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        ana = Counter(p)
+        ans = []
         k = len(p)
 
-        def isanam(window):
-            count = Counter(window)
-            for key in count.keys():
-                if key in ana:
-                    if ana[key] == count[key]:
-                        continue
-                    else:
-                        return False
-                else:
-                    return False
-            return True
+        if len(s) < k:
+            return []
 
-        left = 0
-        ans = []
-        for right in range(k,len(s)+1):
-            if isanam(s[left:right]):
-                ans.append(left)
-            left += 1
+        pCount = Counter(p)
+
+        windowCount = {}
+        for i in range(k):
+            windowCount[s[i]] = windowCount.get(s[i],0) + 1
+        
+        if pCount == windowCount:
+            ans.append(0)
+        
+        for _ in range(k,len(s)):
+            if windowCount[s[_ - k]] == 1:
+                del windowCount[s[_ - k]]
+            else:
+                windowCount[s[_ - k]] -= 1
+            
+            windowCount[s[_]] = windowCount.get(s[_],0) + 1
+            if pCount == windowCount:
+                ans.append(_ - k + 1)
 
         return ans
 
+        
 
+
+'''
+fixed sliding window approach
+ans = []
+p = Counter(p)
+
+
+p = {a : 1, b : 1 , c : 1}
+k = len(p)
+
+secondMap = {}
+for i in range(k):
+    add s[i] in secondMap
+
+if SecondMap == p:
+    add 0 to ans
+
+for _ in range(k,len(s)):
+    if SecondMap[s[k]] == 1:
+        remove SecondMap[s[k]] from map
+    else:
+        SecondMap[s[k]] -= 1
+    SecondMap.add(s[_])
+    if SecondMap == p:
+        add _ + k to ans
+
+return ans
+'''
