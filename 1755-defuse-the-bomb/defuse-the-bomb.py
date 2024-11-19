@@ -18,7 +18,6 @@ class Solution:
             return decryption(code,k)
         else:
             k *= -1
-            print(list(reversed(code)))
             return decryption(code[::-1],k)[::-1]
 
 
