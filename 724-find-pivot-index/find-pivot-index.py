@@ -7,10 +7,8 @@ class Solution:
         for i in range(n):
             ps.append(nums[i] + ps[i])
             ss.append(nums[n - i] + ss[i])
-        
-        print(ps)
+
         ss.reverse()
-        print(ss)
         for i in range(n + 1):
             if ps[i] == ss[i]:
                 return i
