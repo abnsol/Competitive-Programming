@@ -1,17 +1,17 @@
 class Solution:
-    def checkSubarraySum(self, nums, k):
-        prefix_mod = 0
-        mod_seen = {0: -1}
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        remainder = {0 : -1}
+        ttl = 0
 
-        for i in range(len(nums)):
-            prefix_mod = (prefix_mod + nums[i]) % k
-
-            if prefix_mod in mod_seen:
-                # ensures that the size of subarray is at least 2
-                if i - mod_seen[prefix_mod] > 1:
-                    return True
-            else:
-                # mark the value of prefix_mod with the current index.
-                mod_seen[prefix_mod] = i
-
+        for i,n in enumerate(nums):
+            ttl += n
+            r = ttl % k
+            if r not in remainder:
+                remainder[r] = i
+            elif i - remainder[r] > 1:
+                return True 
+            
         return False
+'''
+23 2 4 6 7
+'''
