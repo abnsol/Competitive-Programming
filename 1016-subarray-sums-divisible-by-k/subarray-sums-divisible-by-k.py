@@ -12,13 +12,16 @@ class Solution:
         return res
 
 '''
-
 brute force
 find every subarray
 find the sum of each subarray and check if div by k
 increment result
 O(n3)
 
+[0,4,9,9,7,4,5] O(n2)
+(prefix[j] - prefix[i]) % k == 0
+
 prefix sum approach
+prefix[j] % k == prefix[i] % k
 '''
         
