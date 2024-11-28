@@ -1,28 +1,32 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        cnt = Counter({0 : 1})
         acc = 0
+        count = {0 : 1} # store the previous results that can be subrtracted
         res = 0
 
         for num in nums:
             acc += num
-            res += cnt[acc - k]
-            cnt[acc] += 1
+            if acc - k in count:
+                res += count[acc - k]
+            
+            count[acc] = count.get(acc,0) + 1
 
-        return res            
+        return res 
 
 '''
-0 > 1
-1 > 1
-2 > 1
+brute force approach
+find every sub array
+find the sum of those sub arrays
+check equal with k
 
+optimized bf
+ps = [0,1,2,3]
 
-acc = 1
+O(n) => prefixsum approach with hashmap
+ps = [0,1,2,3]
 res = 0
-
-acc = 2
-res = 1
-
-acc = 3
-res = 2
+0 : 1
+1 : 1
+2 : 1 res = 1
+3 : 1 res = 2
 '''
