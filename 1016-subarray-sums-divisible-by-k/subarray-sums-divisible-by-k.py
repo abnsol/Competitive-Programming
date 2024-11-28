@@ -8,7 +8,6 @@ class Solution:
             ttl += i
             res += cnt[ttl % k]
             cnt[ttl % k] += 1
-            print(ttl % k," ",cnt[ttl % k])
         
         return res
 
