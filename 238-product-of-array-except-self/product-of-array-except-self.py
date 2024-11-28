@@ -1,26 +1,40 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ps = [1]
+        ss = [1]
         n = len(nums)
-        ans = [1] * (n) 
-
-        for i in range(1,n):
-            ans[i] = nums[i - 1] * ans[i - 1]
+        psp = ssp = 1
+        for i in range(n - 1):
+            psp *= nums[i]
+            ssp *= nums[n - i - 1]
+            ps.append(psp)
+            ss.append(ssp)
         
-        ss = 1 
-        for j in range(n - 1,-1,-1):
-            ans[j] *= ss
-            ss *= nums[j]
+        ss.reverse()
+        ans = []
+        for i in range(n):
+            ans.append(ps[i] * ss[i])
         
         return ans
 
-    
-    # [1,1,2,6]  prefix product not including the current element
-    # [24,12,4,1] suffix product not including the current 
-    # [24,12,8,6]   multiply the prefix and suffix for the current element
 
-    # [1,-1,-1,0,0]
-    # [0,0,-9,3,0]
-    # [0,0,9,0,0]
+'''
+[1,2,3,4]
 
+[4,3,2,1]
+[1,4,12,24]
+[1,1,2,6]
+[24,12,4,1]
+[24,12,8,6]
 
-        
+algorithm
+
+init ps and ss and ans
+loop through and calculate ps and ss
+mul ss[i] ps[i] > ans
+
+[-1,1,0,-3,3]
+[1,-1,-1,0,0]
+[0,0,-9,3,1]
+[0,0,9,0,0]
+'''
