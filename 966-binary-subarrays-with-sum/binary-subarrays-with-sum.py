@@ -1,24 +1,42 @@
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        # so the goal is to find all subarrrays whose sum <= goal and sum <= goal - 1 so the difference between them will give us the total subarrays whose sum = goal
+        hashMap = {0 : 1}
+        runningSum = 0
+        res = 0
 
-        def helper(nums,goal):
-            # use sliding window to find sum <= goal
-            if goal < 0: return 0
+        for num in nums:
+            runningSum += num
+            if runningSum - goal in hashMap:
+                res += hashMap[runningSum - goal]
 
-            l = total = totalSub = 0
-            for r in range(len(nums)):
-                total += nums[r]
-                while l < r and total > goal:
-                    total -= nums[l]
-                    l += 1
-                
-                if total <= goal:
-                    totalSub += r - l + 1
-            
-            return totalSub
+            hashMap[runningSum] = hashMap.get(runningSum,0) + 1
         
-        first = helper(nums,goal)
-        second = helper(nums,goal - 1)
+        return res
 
-        return first - second
+        
+
+'''
+bf approach
+O(n3)
+optimized bf
+O(n2)
+[0,1,1,2,2,3]
+j > i
+ps[j] - ps[i] = goal
+very optimized bf
+O(N)
+acc = 3
+res = 4
+{
+    0 : 1,
+    1 : 2,
+    2 : 2,
+    3 : 1
+}
+
+acc = 0
+res = 15
+{
+    0 : 6,
+}
+'''
