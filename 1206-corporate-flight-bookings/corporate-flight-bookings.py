@@ -8,7 +8,6 @@ class Solution:
                 rangeUpdate[last + 1] -= seats
 
         acc = 0
-        print(rangeUpdate)
         for i in range(n):
             acc += rangeUpdate[i + 1]
             rangeUpdate[i] = acc
