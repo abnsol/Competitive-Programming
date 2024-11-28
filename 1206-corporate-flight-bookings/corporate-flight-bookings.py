@@ -1,15 +1,16 @@
 class Solution:
     def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
-        # range sum query
-        seats = [0] * (n + 1)
+        rangeUpdate = [0] * (n + 1)
 
-        for first,last,seat in bookings:
-            seats[first - 1] += seat
-            seats[last] -= seat
-        
-        ans = [seats[0]]
-        for i in range(1,n):
-            ans.append(ans[i - 1] + seats[i])
-        
-        return ans
+        for first,last,seats in bookings:
+            rangeUpdate[first] += seats
+            if last < n:
+                rangeUpdate[last + 1] -= seats
 
+        acc = 0
+        print(rangeUpdate)
+        for i in range(n):
+            acc += rangeUpdate[i + 1]
+            rangeUpdate[i] = acc
+
+        return rangeUpdate[:-1]
