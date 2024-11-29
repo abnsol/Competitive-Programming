@@ -5,11 +5,9 @@ class Solution:
 
         for num in nums:
             ttl += num
+            res = max(res,ttl)
             if ttl < 0:
-                res = max(res,ttl)
                 ttl = 0
-            else:
-                res = max(res,ttl)
         
         return res
 
