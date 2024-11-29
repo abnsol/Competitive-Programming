@@ -1,16 +1,19 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        valid = "()[]{}"
+        stk = []
+        valids = "()[]{}"
 
-        for char in s:
-            if char in "({[":
-                stack.append(char)
+        for bracket in s:
+            if bracket in "([{":
+                stk.append(bracket)
             else:
-                if stack and stack[-1] + char in valid:
-                    stack.pop()
+                if stk:
+                    if stk.pop() + bracket not in valids:
+                        return False
                 else:
                     return False
         
-        if not stack: return True
-        return False
+        return True if not stk else False
+                
+
+        
