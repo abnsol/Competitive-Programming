@@ -1,15 +1,22 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        greater = Counter()
-        stack = []
-        for num in nums2:
-            while stack and stack[-1] < num:
-                n = stack.pop()
-                greater[n] = num
-            stack.append(num)
-        
-        n = len(nums1)
-        res = [greater[nums1[i]] if nums1[i] in greater else -1 for i in range(n)]
-       
-        return res
+        stk = []
+        nextGreater = {}
 
+        for num in nums2:
+            while stk and stk[-1] < num:
+                popped = stk.pop()
+                nextGreater[popped] = num
+            
+            stk.append(num)
+        
+        ans = []
+        for num in nums1:
+            if num in nextGreater:
+                ans.append(nextGreater[num])
+            else:
+                ans.append(-1)
+        
+        return ans
+
+        
