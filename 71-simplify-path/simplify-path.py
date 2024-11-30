@@ -2,7 +2,6 @@ class Solution:
     def simplifyPath(self, path: str) -> str:
         splitted_path = path.split("/")
         stk = []
-        print(splitted_path)
 
         for char in splitted_path:
             if stk and char == "..":
