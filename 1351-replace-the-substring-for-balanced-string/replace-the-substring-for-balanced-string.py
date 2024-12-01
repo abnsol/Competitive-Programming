@@ -3,15 +3,13 @@ class Solution:
         n = len(s)
         cnt = Counter(s)
 
-        if cnt['Q'] == cnt["R"] == cnt["E"] == cnt["W"]:
-            return 0
-
         removeCnt = Counter()
         # find the excess elements
         for key in cnt:
             if cnt[key] > n / 4:
                 removeCnt[key] = cnt[key] - n//4
         
+        if not removeCnt: return 0 
         ans = n
         l = 0
         for r in range(n):
