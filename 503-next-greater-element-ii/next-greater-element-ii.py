@@ -1,22 +1,29 @@
-class Solution(object):
-    def nextGreaterElements(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        result = [-1]*len(nums)
-        stack = []
-        stack.append([nums[0],0])
-        for i in range(len(nums)):
-            while stack and nums[i] > stack[-1][0]:
-                result[stack[-1][1]] = nums[i]
-                stack.pop()
-            stack.append([nums[i],i])
-        i=0
-        index_val=stack[0][1]
-        while(i<=index_val):
-            while stack and nums[i] > stack[-1][0]:
-                result[stack[-1][1]] = nums[i]
-                stack.pop()
-            i+=1
-        return result
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        myMap = {}
+        for i in range(n):
+            myMap[i] = -1 
+        
+        stk = []
+        for i in range(2*n):
+            i %= n
+            while stk and stk[-1][1] < nums[i]:
+                index,popped_num = stk.pop()
+                myMap[index] = nums[i]
+
+            if myMap[i] == -1:
+                stk.append([i,nums[i]])
+        
+        ans = [0] * n
+        for keys in myMap:
+            ans[keys] = myMap[keys]
+        
+        return ans        
+
+'''
+1 : 2
+1 : 2
+[2,2]
+
+'''
