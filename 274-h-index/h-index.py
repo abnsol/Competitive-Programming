@@ -6,28 +6,15 @@ class Solution:
         for cite in citations:
             cnt_srt[cite] += 1
         
-        before = 0
-        print(cnt_srt)
+        numbersAfter = 0
         for i in range(n,-1,-1):
-            before += cnt_srt[i]
-            if before >= i:
+            numbersAfter += cnt_srt[i]
+            if numbersAfter >= i:
                 return i
         
         return 0
 
 
 '''
-ans = 0
-[0,1,3,5,6] 
-counter = {} # [number of ints,index] [>= i] [n - index >= i]
-
-if nums[i] > n or 0: not an answer
-if i = 1 
-while nums[i] < i and i < n:
-    i += 1
-
-
-i = 5
-while i >= 0:
-    
+count_srt solution  
 '''
