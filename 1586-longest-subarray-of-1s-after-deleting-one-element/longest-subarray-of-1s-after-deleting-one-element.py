@@ -1,51 +1,28 @@
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        oneCounter = zeroCounter = maxLength = l = 0
-        n = len(nums)
-        setLength = len(set(nums))
+        cnt = 0
+        l = 0
+        res = 0
 
-        if setLength == 1 and nums[0] == 1:
-            return n - 1
-        
-        if  setLength == 1 and nums[0] == 0:
-            return maxLength
-
-        for r in range(n):
-            if nums[r] == 1:
-                oneCounter += 1
-            else:
-                zeroCounter += 1
+        for r in range(len(nums)):
+            if nums[r] == 0:
+                cnt += 1
             
-            while zeroCounter > 1:
+            while cnt > 1:
                 if nums[l] == 0:
-                    zeroCounter -= 1
-                else:
-                    oneCounter -= 1
-                
+                    cnt -= 1
+
                 l += 1
             
-            maxLength = max(maxLength,oneCounter)
+            res = max(res,r - l)
         
-        return maxLength
+        return res
 
 
 '''
-dynamic sliding window approach
-initialize oneCounter,zeroCounter,maxLength
-intialize l = 0
-for r in len(nums):
-    if nums[r] == 1:
-        oneCounter += 1
-    else:
-        zeroCounter += 1
-    
-    while zeroCounter > 1:
-        if nums[l] == 0:
-            zeroCounter -= 1
-        else:
-            oneCounter -= 1
-    
-    maxlength = max(oneCounter,maxlength)
-
-return maxLength
+add()
+good() => count of zeroes <= 1
+remove => cnt -= 1 , l += 1
+res = max(r - l + 1 - cnt)
 '''
+        
