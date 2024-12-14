@@ -12,7 +12,7 @@ class Solution:
                 if nums[l] % 2 == 1:
                     count -= 1
                 l += 1
-            
+            print(total)
             ans += total
             
         return ans
