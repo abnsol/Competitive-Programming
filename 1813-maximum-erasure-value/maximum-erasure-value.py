@@ -1,19 +1,20 @@
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        unique = set()
-        maxScore = currscore = left = 0
-        for i in range(len(nums)):
-            currscore += nums[i]
-            while nums[i] in unique:
-                currscore -= nums[left]
-                unique.remove(nums[left])
-                left += 1
+        cnt = Counter()
+        l = res = ttl = 0
 
-            unique.add(nums[i])
-            maxScore = max(maxScore,currscore)
+        for r in range(len(nums)):
+            ttl += nums[r]
+            cnt[nums[r]] += 1
 
-        return maxScore
-
-
+            while cnt[nums[r]] > 1:
+                ttl -= nums[l]
+                cnt[nums[l]] -= 1
+                l += 1
+            
+            res = max(res,ttl)
+        
+        return res
                 
 
+        
