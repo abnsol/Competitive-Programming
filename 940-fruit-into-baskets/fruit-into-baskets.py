@@ -1,18 +1,30 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        fruitBasket = Counter()
-        startIdx = 0
+        res = l = 0
+        cnt = {}
 
-        for fruit in fruits:
-            fruitBasket[fruit] += 1
+        for r in range(len(fruits)):
+            cnt[fruits[r]] = cnt.get(fruits[r],0) + 1
 
-            if len(fruitBasket) > 2:
-                startfruit = fruits[startIdx]  # like the left pointer in SW
-                fruitBasket[startfruit] -= 1
-
-                if fruitBasket[startfruit] == 0: # delete the fruit from the dictionary
-                    del fruitBasket[startfruit]
-                
-                startIdx += 1   # everytime left is increased while fruitBasket > 2 
+            while len(cnt) > 2:
+                cnt[fruits[l]] -= 1
+                if cnt[fruits[l]] == 0: del cnt[fruits[l]]
+                l += 1
+            
+            res = max(res,r - l + 1)
         
-        return len(fruits) - startIdx  # think of it as  
+        return res
+
+
+
+'''
+sw approach
+
+add => elements
+check => elements[keys] in the counter only 2
+remove => number from left in cnt
+
+counter = {} => elements[keys] in the counter only 2
+1, 1 ,2 ,1 ,2, 3, 2 ,2, 2, 2
+'''
+        
