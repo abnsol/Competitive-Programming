@@ -3,10 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        l = r = 0 
-        while r < len(nums):
-            if nums[r] != 0:
-                nums[l],nums[r] = nums[r],nums[l]
+        l = 0 
+        n = len(nums)
+        while l < n and nums[l] != 0:
+            l += 1
+        
+        for r in range(l,n):
+            if nums[r] == 0:
+                continue
+            else:
+                nums[l], nums[r] = nums[r], nums[l]
                 l += 1
-            r += 1
-        return nums
+        
+    
+
+
+"""
+1 0 0 3 12
+"""
