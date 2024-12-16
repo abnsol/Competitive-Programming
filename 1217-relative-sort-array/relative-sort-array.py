@@ -1,15 +1,18 @@
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        count = Counter(arr1)
-        arr = []
-
+        cnt = Counter(arr1)
+        ans = []
         for num in arr2:
-            arr += ([num] * count[num])
-            count[num] = 0
+            ans += [num] * cnt[num]
+            del cnt[num]
         
-        count = sorted(count.items())
-        for rem in count:
-            arr += ([rem[0]] * rem[1])
+        left = []
+        for keys in cnt:
+            left += [keys] * cnt[keys]
         
-        return arr
+        left.sort()
+        ans += left
 
+        return ans
+
+        
