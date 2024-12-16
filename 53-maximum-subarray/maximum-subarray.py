@@ -1,22 +1,20 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        ttl = 0
-        res = nums[0]
-
+        res = float("-inf")
+        ps = 0
         for num in nums:
-            ttl += num
-            res = max(res,ttl)
-            if ttl < 0:
-                ttl = 0
-        
+            ps += num
+            if ps < 0:
+                res = max(res,ps)
+                ps = 0
+            else:
+                res = max(res,ps)
+
         return res
 
 
-'''
--2 1 -2 4 3 5 6 1 5
-5 9 8 15 23  
 
-ttl = 0
-res = nums[0]
-max(res,ttl)
+'''
+ps < 0 reset to zero
+max = (res,acc)
 '''
