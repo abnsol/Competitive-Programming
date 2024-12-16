@@ -1,18 +1,17 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
         skill.sort()
-        requiredSkill = skill[0] + skill[-1]
-        totalChemistry = skill[0] * skill[-1]
-        l, r = 1, len(skill) - 2
+        n = len(skill)  
+        l = 0 
+        r = n - 1
 
+        ans = 0
+        chemo = skill[l] + skill[r]
         while l < r:
-            if skill[l] + skill[r] != requiredSkill:
+            ans += skill[l] * skill[r]
+            if chemo != skill[l] + skill[r]:
                 return -1
-
-            totalChemistry += skill[l] * skill[r]
             l += 1
             r -= 1
-
-        return totalChemistry
-
-
+        
+        return ans
