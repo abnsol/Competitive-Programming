@@ -1,1 +1,1 @@
-<h2>subarray-sums-divisible-by-k Notes</h2><hr>[ Time taken: 21 m 22 s ]
+<h2>subarray-sums-divisible-by-k Notes</h2><hr>[ Time taken: 7 m 16 s ]
