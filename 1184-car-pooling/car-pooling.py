@@ -1,15 +1,18 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        rangeUpdate = [0] * (1001)
+        n = 1000
+        rangeUpdate = [0] * (n + 1)
 
-        for passanger,start,to in trips:
-            rangeUpdate[start] += passanger
-            rangeUpdate[to] -= passanger
-        
+        for num,start,end in trips:
+            rangeUpdate[start] += num
+            rangeUpdate[end] -= num
+        print(rangeUpdate)
+
         acc = 0
         for num in rangeUpdate:
+            acc += num
             if acc > capacity:
                 return False
-            acc += num
 
-        return True    
+        return True 
+        
