@@ -1,17 +1,17 @@
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        cnt = Counter(arr1)
+        maximum = max(arr1)
+        cnt = [0] * (maximum + 1)
+        for num in arr1:
+            cnt[num] += 1
+        
         ans = []
         for num in arr2:
             ans += [num] * cnt[num]
-            del cnt[num]
-        
-        left = []
-        for keys in cnt:
-            left += [keys] * cnt[keys]
-        
-        left.sort()
-        ans += left
+            cnt[num] = 0
+    
+        for value,remaining in enumerate(cnt):
+            ans += [value] * remaining
 
         return ans
 
