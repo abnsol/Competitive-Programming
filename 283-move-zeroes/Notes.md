@@ -1,1 +1,1 @@
-<h2>move-zeroes Notes</h2><hr>[ Time taken: 15 m 29 s ]
+<h2>move-zeroes Notes</h2><hr>[ Time taken: 3 m 19 s ]
