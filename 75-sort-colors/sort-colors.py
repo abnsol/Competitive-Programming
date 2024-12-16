@@ -3,25 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        n = len(nums)
         l = m = 0
-        r = len(nums) - 1
+        r = n - 1
 
-        while l < len(nums) and nums[l] == 0:
-            l += 1
-            m += 1
-        
-        while r > -1 and nums[r] == 2:
-            r -= 1
-
-        while m <= r: 
+        while m <= r:
             if nums[m] == 0:
-                nums[m],nums[l] = nums[l], nums[m]
+                nums[l],nums[m] = nums[m],nums[l]
                 l += 1
                 m += 1
             elif nums[m] == 2:
-                nums[r],nums[m] = nums[m],nums[r]
+                nums[m],nums[r] = nums[r], nums[m]
                 r -= 1
             else:
                 m += 1
-            
-        return nums
+           
+
+
+        
