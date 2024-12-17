@@ -1,19 +1,20 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stk = []
-        valids = "()[]{}"
+        valid = ["()","[]","{}"]
 
-        for bracket in s:
-            if bracket in "([{":
-                stk.append(bracket)
-            else:
-                if stk:
-                    if stk.pop() + bracket not in valids:
-                        return False
+        for par in s:
+            if par in "])}":
+                if stk and stk[-1] + par in valid:
+                    stk.pop()
                 else:
                     return False
+            else:
+                stk.append(par)
         
-        return True if not stk else False
-                
+        return False if stk else True
 
-        
+'''
+close and open doesnt match
+every open must be closed at the end
+'''
