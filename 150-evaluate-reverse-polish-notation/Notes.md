@@ -1,1 +1,1 @@
-<h2>evaluate-reverse-polish-notation Notes</h2><hr>[ Time taken: 12 m 25 s ]
+<h2>evaluate-reverse-polish-notation Notes</h2><hr>[ Time taken: 9 m 44 s ]
