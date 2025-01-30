@@ -9,7 +9,5 @@ class Solution:
                     ans += "o"
                 else:
                     ans += "al"
-            else:
-                continue
         return ans
         
